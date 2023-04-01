@@ -39,7 +39,8 @@ dependencies:
   get: ^4.6.5
   timelines: ^0.1.0
   video_player: ^2.6.0
-
+  webview_flutter: ^2.0.13
+  http: ^0.13.5
 dev_dependencies:
   flutter_test:
     sdk: flutter

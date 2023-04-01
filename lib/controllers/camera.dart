@@ -20,8 +20,8 @@ class ControllerCamera extends GetxController {
           name: "name",
           brand: "brand",
           model: "model",
-          cameraAddress: "assets/images/Butterfly-209.mp4",
-          port: "assets/images/Butterfly-209.mp4",
+          cameraAddress: "http://homevip.vanhoang.vn:5000/",
+          port: "",
           listTimeLine: time_line),
     ];
     listCamera.value = camera;

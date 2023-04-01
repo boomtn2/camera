@@ -8,7 +8,7 @@ const textStyte_NameCamera = TextStyle(
 
 const textStyte_StatusCamera = TextStyle(
   fontSize: 15,
-  color: Colors.white,
+  color: Colors.black,
 );
 
 const textStyteTitle = TextStyle(

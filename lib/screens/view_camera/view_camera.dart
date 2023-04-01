@@ -26,7 +26,10 @@ class _ScreenViewCameraState extends State<ScreenViewCamera> {
           Container(
             height: 200,
             width: MediaQuery.of(context).size.width,
-            child: VideoApp(isNetWork: false, path: "", isPlay: true),
+            child: VideoApp(
+                isNetWork: true,
+                path: "${widget.camera.cameraAddress}${widget.camera.port}",
+                isPlay: true),
           ),
           const ListTile(
             leading: Icon(Icons.arrow_circle_left),

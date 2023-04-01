@@ -30,6 +30,15 @@ class _ScreenADDCamreState extends State<ScreenAddCamre> {
   }
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    address.text = "http://homevip.vanhoang.vn:5000/";
+    port.text = " ";
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -233,9 +242,11 @@ class _ScreenADDCamreState extends State<ScreenAddCamre> {
                       name: name.text,
                       brand: _dropdownValue,
                       model: model.text,
-                      cameraAddress: address.text,
+                      cameraAddress:
+                          address.text.toString().replaceAll(' ', ''),
                       port: port.text,
                       listTimeLine: []);
+
                   _controller.add(camera);
                 }
               },

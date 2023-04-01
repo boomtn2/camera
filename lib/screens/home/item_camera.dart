@@ -40,9 +40,9 @@ class ItemCamera extends StatelessWidget {
                   height: 200,
                   width: MediaQuery.of(context).size.width,
                   child: VideoApp(
-                    isNetWork: false,
+                    isNetWork: true,
                     isPlay: false,
-                    path: camera.port,
+                    path: "${camera.cameraAddress}${camera.port}",
                   ),
                 ),
                 Column(
