@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import '../../controllers/camera.dart';
 import '../../font_text.dart';
 import '../../path_img.dart';
+import '../add_camera/add_camera.dart';
+import '../camera.dart';
 import 'app_bar.dart';
 import 'item_camera.dart';
 
@@ -20,12 +24,14 @@ class _ScreenHomeState extends State<ScreenHome> {
         children: [
           AppBarCustom(),
           Expanded(
-              child: ListView(
-            children: [
-              ItemCamera(),
-              ItemCamera(),
-              ItemCamera(),
-            ],
+              child: GetX<ControllerCamera>(
+            builder: (controller) => ListView(
+              children: controller.listCamera
+                  .map((element) => ItemCamera(
+                        camera: element,
+                      ))
+                  .toList(),
+            ),
           )),
         ],
       ),
@@ -42,7 +48,9 @@ class _ScreenHomeState extends State<ScreenHome> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Get.to(() => ScreenAddCamre());
+        },
         child: Image.asset(iconProtect),
       ),
     );

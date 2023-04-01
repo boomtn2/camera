@@ -1,9 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-class Timeline {
+class TimelineModel {
   String time;
   List<String> img;
 
-  Timeline({
+  TimelineModel({
     required this.time,
     required this.img,
   });

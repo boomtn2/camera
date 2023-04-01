@@ -1,18 +1,20 @@
+import 'package:camera_da/models/camera.dart';
 import 'package:camera_da/screens/view_camera/view_camera.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../font_text.dart';
 import '../../path_img.dart';
+import '../camera.dart';
 
 class ItemCamera extends StatelessWidget {
-  const ItemCamera({super.key});
-
+  const ItemCamera({super.key, required this.camera});
+  final Camera camera;
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.to(() => const ScreenViewCamera());
+        Get.to(() => ScreenViewCamera(camera: camera));
       },
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -23,7 +25,7 @@ class ItemCamera extends StatelessWidget {
                 width: 10,
               ),
               Text(
-                "Vườn",
+                "${camera.name}",
                 style: textStyte_NameCamera,
               ),
             ],
@@ -32,46 +34,55 @@ class ItemCamera extends StatelessWidget {
             height: 200,
             width: MediaQuery.of(context).size.width,
             margin: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 30),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                image: DecorationImage(
-                    image: AssetImage(imgCameraNull), fit: BoxFit.fill)),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
+            child: Stack(
               children: [
-                ListTile(
-                  title: Column(
-                    children: [
-                      Row(
+                Container(
+                  height: 200,
+                  width: MediaQuery.of(context).size.width,
+                  child: VideoApp(
+                    isNetWork: false,
+                    isPlay: false,
+                    path: camera.port,
+                  ),
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    ListTile(
+                      title: Column(
                         children: [
-                          CircleAvatar(
-                            radius: 5,
-                            backgroundColor: Colors.orange,
+                          Row(
+                            children: [
+                              CircleAvatar(
+                                radius: 5,
+                                backgroundColor: Colors.orange,
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                "Đang bật báo động",
+                                style: textStyte_StatusCamera,
+                              ),
+                            ],
                           ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            "Đang bật báo động",
-                            style: textStyte_StatusCamera,
+                          Row(
+                            children: [
+                              Text(
+                                "${camera.model}",
+                                style: textStyte_StatusCamera,
+                              ),
+                            ],
                           ),
                         ],
                       ),
-                      Row(
-                        children: [
-                          Text(
-                            "C6N(F70357917)",
-                            style: textStyte_StatusCamera,
-                          ),
-                        ],
+                      trailing: Icon(
+                        Icons.menu,
+                        color: Colors.white,
                       ),
-                    ],
-                  ),
-                  trailing: Icon(
-                    Icons.menu,
-                    color: Colors.white,
-                  ),
-                )
+                    )
+                  ],
+                ),
               ],
             ),
           ),

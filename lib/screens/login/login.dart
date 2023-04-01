@@ -1,3 +1,4 @@
+import 'package:camera_da/models/account.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -103,9 +104,20 @@ class _ScreenLoginState extends State<ScreenLogin> {
                         bool? isValidated = formKey.currentState?.validate();
                         String taiKhoan = taiKhoanController.text;
                         String matKhau = matKhauController.text;
-
+                        bool isLodin = false;
                         if (isValidated == true) {
-                          Get.to(() => ScreenHome());
+                          listAccount.forEach((element) {
+                            if (element.user.compareTo(taiKhoan) == 0 &&
+                                element.pass.compareTo(matKhau) == 0) {
+                              isLodin = true;
+                              Get.to(() => ScreenHome());
+                              Get.snackbar("Đăng nhập ", "Thành công");
+                            }
+                          });
+                          if (isLodin == false) {
+                            Get.snackbar(
+                                "Thất bại ", "Sai tài khoản hoặc mật khẩu");
+                          }
                         }
                       },
                       icon: const Icon(Icons.login),

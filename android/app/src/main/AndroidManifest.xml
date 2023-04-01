@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.camera_da">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="camera_da"
         android:name="${applicationName}"

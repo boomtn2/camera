@@ -1,5 +1,8 @@
+import 'package:camera_da/controllers/camera.dart';
 import 'package:camera_da/font_text.dart';
+import 'package:camera_da/models/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'dropdown.dart';
 
@@ -11,9 +14,12 @@ class ScreenAddCamre extends StatefulWidget {
 }
 
 class _ScreenADDCamreState extends State<ScreenAddCamre> {
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController matKhauController = TextEditingController();
+  final TextEditingController name = TextEditingController();
+  final TextEditingController model = TextEditingController();
+  final TextEditingController port = TextEditingController();
+  final TextEditingController address = TextEditingController();
   final formKey = GlobalKey<FormState>();
+  var _controller = Get.find<ControllerCamera>();
   String _dropdownValue = "";
   void dropdownCallback(String? selectedValue) {
     if (selectedValue is String) {
@@ -74,7 +80,7 @@ class _ScreenADDCamreState extends State<ScreenAddCamre> {
                                   ),
                                 ),
                               ),
-                              controller: nameController,
+                              controller: name,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return 'Chưa nhập';
@@ -119,7 +125,7 @@ class _ScreenADDCamreState extends State<ScreenAddCamre> {
                                   ),
                                 ),
                               ),
-                              controller: nameController,
+                              controller: model,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return 'Chưa nhập';
@@ -154,7 +160,7 @@ class _ScreenADDCamreState extends State<ScreenAddCamre> {
                                   ),
                                 ),
                               ),
-                              controller: nameController,
+                              controller: address,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return 'Chưa nhập';
@@ -189,7 +195,7 @@ class _ScreenADDCamreState extends State<ScreenAddCamre> {
                                   ),
                                 ),
                               ),
-                              controller: nameController,
+                              controller: port,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
                                   return 'Chưa nhập';
@@ -218,7 +224,22 @@ class _ScreenADDCamreState extends State<ScreenAddCamre> {
           SizedBox(
             width: 10,
           ),
-          ElevatedButton(onPressed: () {}, child: Text("ADD"))
+          ElevatedButton(
+              onPressed: () {
+                bool? isValidated = formKey.currentState?.validate();
+
+                if (isValidated == true) {
+                  Camera camera = Camera(
+                      name: name.text,
+                      brand: _dropdownValue,
+                      model: model.text,
+                      cameraAddress: address.text,
+                      port: port.text,
+                      listTimeLine: []);
+                  _controller.add(camera);
+                }
+              },
+              child: Text("ADD"))
         ],
       ),
     );
