@@ -30,4 +30,24 @@ class ControllerCamera extends GetxController {
   void add(Camera camera) {
     listCamera.add(camera);
   }
+
+  bool edit(Camera camera, Camera edit) {
+    for (var i = 0; i < listCamera.length; i++) {
+      if (camera == listCamera[i]) {
+        listCamera[i] = edit;
+        return true;
+      }
+    }
+    return false;
+  }
+
+  bool delete(Camera camera) {
+    for (var i = 0; i < listCamera.length; i++) {
+      if (camera == listCamera[i]) {
+        listCamera.removeAt(i);
+        return true;
+      }
+    }
+    return false;
+  }
 }

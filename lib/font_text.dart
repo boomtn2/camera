@@ -16,3 +16,9 @@ const textStyteTitle = TextStyle(
   color: Colors.black,
   fontWeight: FontWeight.bold,
 );
+
+const textStyteList = TextStyle(
+  fontSize: 20,
+  color: Colors.black,
+  fontWeight: FontWeight.bold,
+);

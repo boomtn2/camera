@@ -4,16 +4,16 @@ import 'package:camera_da/models/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'dropdown.dart';
+import '../add_camera/dropdown.dart';
 
-class ScreenAddCamre extends StatefulWidget {
-  const ScreenAddCamre({super.key});
-
+class EditCamera extends StatefulWidget {
+  const EditCamera({super.key, required this.camera});
+  final Camera camera;
   @override
-  State<ScreenAddCamre> createState() => _ScreenADDCamreState();
+  State<EditCamera> createState() => _EditCameraState();
 }
 
-class _ScreenADDCamreState extends State<ScreenAddCamre> {
+class _EditCameraState extends State<EditCamera> {
   final TextEditingController name = TextEditingController();
   final TextEditingController model = TextEditingController();
   final TextEditingController port = TextEditingController();
@@ -33,9 +33,10 @@ class _ScreenADDCamreState extends State<ScreenAddCamre> {
   void initState() {
     // TODO: implement initState
     super.initState();
-
-    address.text = "http://homevip.vanhoang.vn:5000/";
-    port.text = " ";
+    name.text = widget.camera.name;
+    model.text = widget.camera.model;
+    address.text = widget.camera.cameraAddress;
+    port.text = widget.camera.port;
   }
 
   @override
@@ -255,7 +256,7 @@ class _ScreenADDCamreState extends State<ScreenAddCamre> {
                       port: port.text,
                       listTimeLine: []);
 
-                  _controller.add(camera);
+                  _controller.edit(widget.camera, camera);
 
                   Get.back();
                 }
